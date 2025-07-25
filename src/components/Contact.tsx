@@ -11,9 +11,18 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Hi Immanuel,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
+    );
+    const mailtoLink = `mailto:immanuel9959@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Reset form after a short delay
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -82,13 +91,13 @@ const Contact = () => {
             <div className="glass-card p-8 rounded-2xl">
               <h3 className="text-xl font-semibold text-white mb-4">Connect With Me</h3>
               <div className="flex gap-4">
-                <a href="#" className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:scale-110 transition-all duration-300">
+                <a href="https://www.linkedin.com/in/immanuel-avula" target="_blank" rel="noopener noreferrer" className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:scale-110 transition-all duration-300">
                   <Linkedin className="text-white" size={20} />
                 </a>
                 <a href="#" className="p-3 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg hover:scale-110 transition-all duration-300">
                   <Github className="text-white" size={20} />
                 </a>
-                <a href="#" className="p-3 bg-gradient-to-r from-pink-500 to-pink-600 rounded-lg hover:scale-110 transition-all duration-300">
+                <a href="https://www.instagram.com/mrsmart_ai" target="_blank" rel="noopener noreferrer" className="p-3 bg-gradient-to-r from-pink-500 to-pink-600 rounded-lg hover:scale-110 transition-all duration-300">
                   <Instagram className="text-white" size={20} />
                 </a>
               </div>
